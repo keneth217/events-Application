@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CommonModule } from "@angular/common";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+
 import { ScannerService } from "./service/scanner.service";
 import { Subscription } from "rxjs";
 
@@ -30,7 +30,7 @@ export class AppComponent {
     }
   }
 
-  private requestCameraPermission(): void {
+  protected requestCameraPermission(): void {
     navigator.mediaDevices.enumerateDevices()
       .then(devices => {
         const videoDevices = devices.filter(device => device.kind === 'videoinput');

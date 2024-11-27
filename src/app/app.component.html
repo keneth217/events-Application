@@ -1,7 +1,15 @@
-<div class="scanner">
+<div class="scanner" *ngIf="isCameraAccessible; else noCameraAccess">
+  <!-- Display the ZXing Scanner if camera is accessible -->
   <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
 </div>
+
+<!-- Fallback UI if camera is not accessible -->
+<ng-template #noCameraAccess>
+  <p>Camera is not accessible. Please grant camera permissions and try again.</p>
+  <button (click)="requestCameraPermission()">Request Camera Access</button>
+</ng-template>
+
+<!-- Scanned result display -->
 <div class="result">
-  <button>kk</button>
   <p>Scanned QR Code Content: {{ scannedResult }}</p>
 </div>
